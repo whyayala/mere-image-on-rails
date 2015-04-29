@@ -1,11 +1,6 @@
-class Admins::RegistrationsController < Devise::RegistrationsController
-  # before_filter :configure_sign_up_params, only: [:create]
-  # before_filter :configure_account_update_params, only: [:update]
-  
-  # disable default no_authentication action
-  skip_before_action :require_no_authentication, only: [:new, :create, :cancel]
-  # now we need admin to register new admin
-  prepend_before_action :authenticate_manager!, only: [:new, :create, :cancel]
+class Users::RegistrationsController < Devise::RegistrationsController
+# before_filter :configure_sign_up_params, only: [:create]
+# before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -62,21 +57,4 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  protected
-
-  def sign_up(resource_name, resoure)
-    # just overwrite the default one
-    # to prevent auto sign in as the new sign up
-    root_path
-  end
-
-  def authenticate_manager!
-    authenticate_scope!
-
-    unless resource.manager?
-      redirect_to root_path
-    end
-  end
-
 end

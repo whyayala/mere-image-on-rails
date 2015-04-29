@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: { registrations: "admins/registrations"}
-  devise_for :users
+  get 'admin/show'
+  
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
   get 'users/index'
 
   get 'users/show'
@@ -21,6 +24,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :appointments
   resources :users
+  resources :admins
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
