@@ -1,20 +1,28 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
-  </tr>
- 
+<div class="row">
   <% @appointments.each do |appointment| %>
-    <tr>
-      <td><%= appointment.time %></td>
-      <td><%= appointment.type %></td>
-      <td><%= link_to 'Show', appointment_path(appointment) %></td>
-      <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-      <td><%= link_to 'Destroy', appointment_path(appointment),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
+    <div class="small-12 medium-4 large-3">
+        <ul class="pricing-table">
+          <li class="title">Appointment @ <%= appointment.appointment_time %></li>
+          <li class="description">
+            Your appointment is with <%= appointment.admin.first_name %>
+          </li>
+          <li class="bullet-item">
+            You are scheduled for a(n) <%= appointment.appointment_type %>
+          </li>
+          <ul class="stack button-group">
+            <li class="cta-button">
+              <%= link_to 'View', appointment_path(appointment), class: 'button info' %>
+            </li>
+            <li class="cta-button">
+              <%= link_to 'Edit', edit_appointment_path(appointment), class: 'button success' %>
+            </li>
+            <li class="cta-button">
+              <%= link_to 'Cancel', appointment_path(appointment), class: 'button alert',
+                method: :delete,
+                data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
+            </li>
+          </ul>
+        </ul>
+    </div>
   <% end %>
-</table>
+</div>
