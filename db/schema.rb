@@ -35,14 +35,19 @@ ActiveRecord::Schema.define(version: 20150424043825) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "time"
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.datetime "appointment_time"
+    t.string   "appointment_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
+  add_index "appointments", ["admin_id"], name: "index_appointments_on_admin_id"
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "username"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false

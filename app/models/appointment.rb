@@ -1,4 +1,6 @@
 class Appointment < ActiveRecord::Base
-	has_one :user
-	validates :time, presence: true
+	belongs_to :user
+	belongs_to :admin
+	
+	validates :appointment_time, presence: true
 end

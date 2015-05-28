@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore txt file with super user and user info for testing
+/CreateAdminAndUser.txt
