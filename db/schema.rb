@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424043825) do
+ActiveRecord::Schema.define(version: 20150602003701) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20150424043825) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
+  create_table "admins_services", id: false, force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "service_id"
+  end
+
+  add_index "admins_services", ["admin_id"], name: "index_admins_services_on_admin_id"
+  add_index "admins_services", ["service_id"], name: "index_admins_services_on_service_id"
+
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "admin_id"
@@ -45,6 +53,14 @@ ActiveRecord::Schema.define(version: 20150424043825) do
 
   add_index "appointments", ["admin_id"], name: "index_appointments_on_admin_id"
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "duration"
+    t.decimal  "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
