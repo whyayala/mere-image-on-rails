@@ -13,66 +13,92 @@
   </head>
 
   <body>
-    <nav class="top-bar" data-topbar role="navigation">      
-      <ul class="title-area">
-        <li class="name">
-          <h1><%= link_to 'Mere Image Salon', root_path %></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-        <% if admin_signed_in? %>
-          <li class="has-dropdown not-click"><a href="#">Welcome <%= current_admin.email %>!</a>
-            <ul class="dropdown">
-              <li class="active"><%= link_to 'Edit profile', edit_admin_registration_path, :class => '' %></li>
-              <li class="active"><%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => ''  %></li>
-            </ul>
+    <div class="wrapper">
+      <nav class="top-bar" data-topbar role="navigation">      
+        <ul class="title-area">
+          <li class="name">
+            <h1><%= link_to 'Mere Image Salon', root_path %></h1>
           </li>
-        <% else %>
-          <% if user_signed_in? %>
-            <li class="has-dropdown not-click"><a href="#">Welcome <%= current_user.email %>!</a>
+           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+          <% if admin_signed_in? %>
+            <li class="has-dropdown not-click"><a href="#">Welcome <%= current_admin.email %>!</a>
               <ul class="dropdown">
-                <li class="active"><%= link_to 'Edit profile', edit_user_registration_path, :class => '' %></li>
-                <li class="active"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => ''  %></li>
+                <li class="active"><%= link_to 'Edit profile', edit_admin_registration_path, :class => '' %></li>
+                <li class="active"><%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => ''  %></li>
               </ul>
             </li>
           <% else %>
-            <li class="has-dropdown not-click"><a href="#">Login</a>
+            <% if user_signed_in? %>
+              <li class="has-dropdown not-click"><a href="#">Welcome <%= current_user.email %>!</a>
+                <ul class="dropdown">
+                  <li class="active"><%= link_to 'Edit profile', edit_user_registration_path, :class => '' %></li>
+                  <li class="active"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => ''  %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="has-dropdown not-click"><a href="#">Login</a>
+                <ul class="dropdown">
+                  <li class="active"><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+                  <li class="active"><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+          </ul>
+
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="has-dropdown not-click">
+              <a href="#">Right Button Dropdown</a>
               <ul class="dropdown">
-                <li class="active"><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-                <li class="active"><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                <li class="active"><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
               </ul>
             </li>
-          <% end %>
-        <% end %>
-        </ul>
+          </ul>
 
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li class="has-dropdown not-click">
-            <a href="#">Right Button Dropdown</a>
-            <ul class="dropdown">
-              <li class="active"><a href="#">First link in dropdown</a></li>
-              <li class="active"><a href="#">Active link in dropdown</a></li>
-            </ul>
-          </li>
-        </ul>
+        </section>
+      </nav>
 
-      </section>
-    </nav>
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
 
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+      <%= yield %>
 
-    <%= yield %>
+      <div class="push"></div>
+    </div>
 
+    <!--Begin Footer-->
+    <div class="footer">
+      <footer class="footer">
+        <div class="large-12 columns">
+          <hr/>
+          <div class="row">
+            <div class="large-6 columns">
+              <p>© Copyright no one at all. Go to town.</p>
+            </div>
+            <div class="large-6 columns">
+              <ul class="inline-list right">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> 
+      </footer>
+    </div> 
+    <!--End Footer-->
   </body>
 </html>

@@ -13,5 +13,21 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
-
+ *= require datetimepicker
  */
+ /*
+ Code for fixed footer
+ */
+
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -80px;
+}
+.footer, .push {
+	height: 80px;
+}
