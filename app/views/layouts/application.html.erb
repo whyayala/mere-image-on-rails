@@ -65,13 +65,18 @@
 
         </section>
       </nav>
-
-      <% if notice %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert"><%= alert %></p>
-      <% end %>
+      <div class="row">
+        <% if notice %>
+          <div data-alert class="alert-box info radius">
+            <%= notice %><%= link_to "X", '#', :class => 'close' %>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div data-alert class="alert-box alert radius">
+            <%= alert %><%= link_to "X", '#', :class => 'close' %>
+          </div>
+        <% end %>
+      </div>
 
       <%= yield %>
 
