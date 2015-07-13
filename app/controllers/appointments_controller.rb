@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
-  # before_action :authenticate_user!
-  before_action :authenticate_admin!
+  before_action :authenticate_user! || :authenticate_admin!
 
   def index
   	@appointments = Appointment.all
@@ -11,7 +10,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-  	@appointment = Appointment.new(article_params)
+  	@appointment = Appointment.new(appointment_params)
   	if @appointment.save
   		redirect_to @appointment
   	else

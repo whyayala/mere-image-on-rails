@@ -2,5 +2,5 @@ class Appointment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :admin
 	
-	validates :appointment_time, presence: true
+	validates :appointment_type, presence: true
 end

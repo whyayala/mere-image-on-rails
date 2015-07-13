@@ -26,8 +26,8 @@ html, body {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -80px;
+	margin: 0 auto -90px;
 }
 .footer, .push {
-	height: 80px;
+	height: 90px;
 }

@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role",                   default: 0
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",             default: "", null: false
+    t.string   "last_name",              default: "", null: false
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",             default: "", null: false
+    t.string   "last_name",              default: "", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

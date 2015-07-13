@@ -15,9 +15,11 @@ module DeviseHelper
 
     html = <<-HTML
     <div class="row">
-      <div data-alert class="alert-box alert radius">
-        <h4>#{sentence}</h4>
-        <ul>#{messages}</ul>
+      <div class="large-12 columns">
+        <div data-alert class="alert-box alert radius">
+          <h4>#{sentence}</h4>
+          <ul>#{messages}</ul>
+        </div>
       </div>
     </div>
     HTML
