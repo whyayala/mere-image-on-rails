@@ -11,7 +11,8 @@ class AppointmentsController < ApplicationController
 
   def create
   	@appointment = Appointment.new(appointment_params)
-  	if @appointment.save
+    @appointment.user = current_user  	
+    if @appointment.save
   		redirect_to @appointment
   	else
   		render 'new'
@@ -45,7 +46,7 @@ class AppointmentsController < ApplicationController
 
   private
   	def appointment_params
-  		params.require(:appointment).permit(:time, :type)
+  		params.require(:appointment).permit(:appointment_type)
   	end
   
 end
