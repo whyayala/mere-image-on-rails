@@ -13,45 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20150602003701) do
 
-  create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "role",                   default: 0
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
-  end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-
-  create_table "admins_services", id: false, force: :cascade do |t|
-    t.integer "admin_id"
-    t.integer "service_id"
-  end
-
-  add_index "admins_services", ["admin_id"], name: "index_admins_services_on_admin_id"
-  add_index "admins_services", ["service_id"], name: "index_admins_services_on_service_id"
-
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "admin_id"
+    t.integer  "specialist_id"
     t.datetime "appointment_time"
     t.string   "appointment_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "appointments", ["admin_id"], name: "index_appointments_on_admin_id"
+  add_index "appointments", ["specialist_id"], name: "index_appointments_on_specialist_id"
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
   create_table "services", force: :cascade do |t|
@@ -62,8 +33,19 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "specialists_services", id: false, force: :cascade do |t|
+    t.integer "specialist_id"
+    t.integer "service_id"
+  end
+
+  add_index "specialists_services", ["service_id"], name: "index_specialists_services_on_service_id"
+  add_index "specialists_services", ["specialist_id"], name: "index_specialists_services_on_specialist_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "phone"
+    t.string   "first_name",             default: "", null: false
+    t.string   "last_name",              default: "", null: false
+    t.string   "phone",                  default: "", null: false
+    t.integer  "role",                   default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -76,8 +58,6 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

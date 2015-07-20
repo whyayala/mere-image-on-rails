@@ -26,15 +26,7 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-          <% if admin_signed_in? %>
-            <li class="has-dropdown not-click"><a href="#">Welcome <%= current_admin.email %>!</a>
-              <ul class="dropdown">
-                <li class="active"><%= link_to 'Edit profile', edit_admin_registration_path, :class => '' %></li>
-                <li class="active"><%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => ''  %></li>
-              </ul>
-            </li>
-          <% else %>
-            <% if user_signed_in? %>
+           <% if user_signed_in? %>
               <li class="has-dropdown not-click"><a href="#">Welcome <%= current_user.email %>!</a>
                 <ul class="dropdown">
                   <li class="active"><%= link_to 'Edit Profile', edit_user_registration_path, :class => '' %></li>
@@ -49,7 +41,6 @@
                 </ul>
               </li>
             <% end %>
-          <% end %>
           </ul>
 
           <!-- Left Nav Section -->
