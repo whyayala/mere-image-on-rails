@@ -4,13 +4,7 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
 
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/edit'
+  get 'welcome/index'
 
   get 'appointments/index'
 
@@ -18,7 +12,13 @@ Rails.application.routes.draw do
 
   get 'appointments/show'
 
-  get 'welcome/index'
+  get 'admins/index'
+
+  get 'admins/show'
+
+  get 'users/index'
+
+  get 'users/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
