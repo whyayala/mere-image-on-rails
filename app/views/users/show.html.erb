@@ -12,8 +12,10 @@
 		  <li class="accordion-navigation">
 		    <a href="#panel2a">Upcoming Appointments</a>
 		    <div id="panel2a" class="content">
-		      <%= @user.appointments.last.appointment_time %>
-		      <%= link_to "New", new_appointment_path %>
+		    	<% if @user.appointments.size > 0 %>
+		      		<%= @user.appointments.last.appointment_time %>
+		      	<% end %>
+		      <%= link_to "Schedule An Appointment", new_appointment_path %>
 		    </div>
 		  </li>
 		  <li class="accordion-navigation">

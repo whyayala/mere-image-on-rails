@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require datetimepicker
+//= require chosen-jquery
 //= require turbolinks
 //= require_tree .
 

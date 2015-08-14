@@ -20,7 +20,11 @@
   <div class="row">
     <div class="large-12 large-centered columns">
       <%= f.label :appointment_type %><br>
-      <%= f.text_field :appointment_type %><br>
+      <%= f.select :appointment_type, 
+        Service.all.map { |service| [service.name, service.id] },
+                        { include_blank: true }, 
+                        {class: 'chosen-select'} %>
+      <br>
     </div>
 
     <div class="large-12 large-centered columns">

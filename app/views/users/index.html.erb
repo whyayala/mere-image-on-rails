@@ -1,0 +1,10 @@
+<h1>Index Page</h1>
+<div class="row">
+	<div class="large-12 large-centered columns">
+		<% if @user.role == "customer" %>
+			You can search for a Specialist here.
+		<% else %>
+			You can search for a Customer here.
+		<% end %>
+	</div>
+</div>

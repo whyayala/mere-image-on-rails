@@ -6,7 +6,7 @@ gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'sprockets', '~> 2.12.3'
+gem 'sprockets-rails', '~> 2.3.1'
+gem 'compass-rails', '~> 2.0.4'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -35,22 +38,27 @@ gem 'foundation-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use for datetimepicker asset
-source 'https://rails-assets.org' do
-  gem 'rails-assets-datetimepicker'
-end
-
 # Gem for parsing strings into their proper possessive form
 gem 'possessive', '~> 1.0.1'
+# Gem for adding Chosen, a library for making user friendly select boxes
+gem 'chosen-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'rspec', "~> 2.13.0"
+  gem "rspec-rails", "~> 2.13.0"  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'factory_girl_rails'
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
