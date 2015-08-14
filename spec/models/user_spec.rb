@@ -44,5 +44,6 @@ describe User do
 				User.by_last_name("J").should_not include @ayala
 			end
 		end
+		
 	end
 end
