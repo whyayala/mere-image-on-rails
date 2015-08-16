@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  # before_action :authenticate_user! || :authenticate_admin!
+  before_action :authenticate_user!
   before_filter :find_appointment, :only => [:edit, :update, :show, :destroy]
   
   def index

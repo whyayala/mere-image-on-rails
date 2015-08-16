@@ -1,6 +1,16 @@
 require 'spec_helper'
+require 'rails_helper'
 
 describe AppointmentsController do
+	before :each do
+	    @request.env["devise.mapping"] = Devise.mappings[:user]
+	    sign_in FactoryGirl.create(:user)
+	end
+	
+	it "should have a current_user" do
+		# note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
+		subject.current_user.should_not be_nil
+	end	
 	
 	describe "GET #index" do
 		it "populates a collection of all appointments" do 
@@ -33,9 +43,18 @@ describe AppointmentsController do
 
 	describe "POST #create" do
 		context "with valid attributes" do
-			it "saves the new appointment in the database"
-			it "redirects to show page"
+			it "saves the new appointment in the database" do
+				expect {
+					post :create, appointment: FactoryGirl.attributes_for(:appointment)
+				}.to change(Appointment, :count).by(1)
+			end
+
+			it "redirects to show page" do
+				post :create, appointment: FactoryGirl.attributes_for(:appointment)
+				response.should redirect_to Appointment.last
+			end
 		end
+
 		context "with invalid attributes" do
 			it "does not save the appointment in the database"
 			it "re-renders the :new template"
