@@ -46,8 +46,8 @@ gem 'chosen-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec', "~> 2.13.0"
-  gem "rspec-rails", "~> 2.13.0"  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'rspec', "~> 2.14.0"
+  gem "rspec-rails", "~> 2.14.0"  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'factory_girl_rails'
   gem 'web-console', '~> 2.0'
 

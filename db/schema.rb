@@ -35,11 +35,16 @@ ActiveRecord::Schema.define(version: 20150602003701) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "time"
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "specialist_id"
+    t.datetime "appointment_time"
+    t.string   "appointment_type", default: "", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
+
+  add_index "appointments", ["specialist_id"], name: "index_appointments_on_specialist_id"
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +63,12 @@ ActiveRecord::Schema.define(version: 20150602003701) do
   add_index "specialists_services", ["specialist_id"], name: "index_specialists_services_on_specialist_id"
 
   create_table "users", force: :cascade do |t|
+    t.string   "first_name",             default: "", null: false
+    t.string   "last_name",              default: "", null: false
+    t.string   "phone",                  default: "", null: false
+    t.integer  "role",                   default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -68,8 +79,6 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name"
-    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
