@@ -56,8 +56,16 @@ describe AppointmentsController do
 		end
 
 		context "with invalid attributes" do
-			it "does not save the appointment in the database"
-			it "re-renders the :new template"
+			it "does not save the appointment in the database" do
+				expect {
+					post :create, appointment: FactoryGirl.attributes_for(:invalid_appointment)
+				}.to_not change(Appointment, :count)
+			end
+
+			it "re-renders the :new template" do
+				post :create, appointment: FactoryGirl.attributes_for(:invalid_appointment)
+				response.should render_template :new
+			end
 		end
 	end
 
@@ -77,5 +85,20 @@ describe AppointmentsController do
 		end
 	end
 
+	describe "DELETE #destroy" do
+		before :each do
+			@appointment = FactoryGirl.create(:appointment)
+		end
 
+		it "deletes the contact" do
+			expect {
+				delete :destroy, id: @appointment
+			}.to change(Appointment, :count).by(-1)
+		end
+
+		it "redirects to root" do
+			delete :destroy, id: @appointment
+			response.should redirect_to root_url
+		end
+	end
 end

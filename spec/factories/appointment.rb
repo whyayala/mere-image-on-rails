@@ -6,8 +6,8 @@ FactoryGirl.define do
 		f.appointment_type { Faker::Lorem.word }
 	end
 
-	# factory :invalid_appointment, parent: :appointment do |f|
-	#   f.appointment_type nil
-	# end
+	factory :invalid_appointment, parent: :appointment do |f|
+		f.appointment_type nil
+	end
 
 end

@@ -43,6 +43,9 @@ gem 'possessive', '~> 1.0.1'
 # Gem for adding Chosen, a library for making user friendly select boxes
 gem 'chosen-rails'
 
+# Gem for slick.js
+gem "jquery-slick-rails"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -60,5 +63,6 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'database_cleaner'
 end
 
