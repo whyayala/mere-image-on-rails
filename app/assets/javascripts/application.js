@@ -14,7 +14,16 @@
 //= require jquery_ujs
 //= require foundation
 //= require chosen-jquery
+//= require jquery.slick
 //= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function(){
+  $('.slider').slick({
+  	autoplay: true,
+    autoplaySpeed: 2000,
+    //setting-name: setting-value
+  });
+});

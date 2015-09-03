@@ -19,6 +19,7 @@ describe "Devis registration" do
   end
 
   context "user edit" do
-    it "allows existing users to change their registration info"
+    it "allows existing users to change their registration info" do      
+    end
   end
 end
