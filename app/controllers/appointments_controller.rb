@@ -3,6 +3,9 @@ class AppointmentsController < ApplicationController
   before_filter :find_appointment, :only => [:edit, :update, :show, :destroy]
   
   def index
+    set_meta_tags title: 'Appointments Page',
+                  description: 'Account managers can view and specialists can view all open and scheduled appointments here.',
+                  noindex: true,
   	@appointments = Appointment.all
   end
 
