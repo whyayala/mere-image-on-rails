@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150602003701) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.string   "last_name"
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "appointments", ["specialist_id"], name: "index_appointments_on_specialist_id"
-  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
+  add_index "appointments", ["specialist_id"], name: "index_appointments_on_specialist_id", using: :btree
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.integer "service_id"
   end
 
-  add_index "specialists_services", ["service_id"], name: "index_specialists_services_on_service_id"
-  add_index "specialists_services", ["specialist_id"], name: "index_specialists_services_on_specialist_id"
+  add_index "specialists_services", ["service_id"], name: "index_specialists_services_on_service_id", using: :btree
+  add_index "specialists_services", ["specialist_id"], name: "index_specialists_services_on_specialist_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             default: "", null: false
@@ -81,7 +84,7 @@ ActiveRecord::Schema.define(version: 20150602003701) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
