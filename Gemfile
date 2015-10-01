@@ -14,6 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Foundation Icons, oh baby
+gem 'foundation-icons-sass-rails'
+
 gem 'pg'
 gem 'sprockets', '~> 2.12.3'
 gem 'sprockets-rails', '~> 2.3.1'

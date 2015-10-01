@@ -1,13 +1,9 @@
       <div class="row">
-        <div class="large-3 columns">
-          <h1><img src="http://placehold.it/400x100&text=Logo"/></h1>
-        </div>
-        <div class="large-9 columns">
-          <ul class="right button-group">
-          <li><a href="#" class="button">Link 1</a></li>
-          <li><a href="#" class="button">Link 2</a></li>
-          <li><a href="#" class="button">Link 3</a></li>
-          <li><a href="#" class="button">Link 4</a></li>
+        <div class="small-12 medium-9 large-6 columns">
+          <ul class="button-group">
+          <li><a href="#" class="button"><i class="fi-home"></i></a></li>
+          <li><a href="#" class="button"><i class="fi-telephone"></i></a></li>
+          <li><a href="#" class="button"><i class="fi-compass"></i></a></li>
           </ul>
          </div>
        </div>
@@ -63,7 +59,7 @@
                 <p>We'd love to hear from you, you attractive person you.</p>
               </div>
               <div class="large-3 columns">
-                <a href="#" class="radius button right">Contact Us</a>
+                <%= link_to "Contact Us", welcome_contact_path, class: "radius button right" %>
               </div>
             </div>
           </div>
