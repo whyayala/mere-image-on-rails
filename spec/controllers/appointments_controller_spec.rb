@@ -2,16 +2,7 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe AppointmentsController do
-	before :each do
-	    @request.env["devise.mapping"] = Devise.mappings[:user]
-	    sign_in FactoryGirl.create(:user)
-	end
-	
-	it "should have a current_user" do
-		# note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
-		subject.current_user.should_not be_nil
-	end	
-	
+
 	describe "GET #index" do
 		it "populates a collection of all appointments" do 
 			appointment = FactoryGirl.create(:appointment)

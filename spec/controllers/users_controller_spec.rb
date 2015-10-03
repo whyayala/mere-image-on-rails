@@ -18,11 +18,7 @@ describe UsersController do
 	end		
 	
 	context "when a 'customer' is signed in" do
-		before :each do
-			@request.env["devise.mapping"] = Devise.mappings[:user]
-			user = FactoryGirl.create(:customer) 
-			sign_in user
-		end
+		login_customer		
 		describe "GET #index" do
 			it "redirects to show" do
 				get "index"
@@ -39,11 +35,7 @@ describe UsersController do
 	end
 	
 	context "when a 'specialist' is signed in" do
-		before :each do
-			@request.env["devise.mapping"] = Devise.mappings[:user]
-			user = FactoryGirl.create(:specialist) 
-			sign_in user
-		end
+		login_specialist		
 		describe "GET #index" do
 			it "populates an array of contacts" do
 			end
