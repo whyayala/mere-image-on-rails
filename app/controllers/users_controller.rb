@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:index, :show]
   
   def index
+	if current_user.is_customer?
+		redirect_to action: "show", id: current_user.id
+	else
+		@users = User.find_each	
+	end
   end
 
   def show

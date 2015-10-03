@@ -5,6 +5,11 @@ describe User do
 		FactoryGirl.create(:user).should be_valid
 	end
 
+	it "has a default role equal to 0" do
+		user = FactoryGirl.create(:user)
+		user.role.should eq(0)
+	end
+
 	it "is invalid if it does not have a first name" do
 		FactoryGirl.build(:user, first_name: nil).should_not be_valid
 	end
