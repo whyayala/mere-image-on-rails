@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'appointments/show'
 
+  get 'appointments/edit'
+
   get 'users/index'
 
   get 'users/show'

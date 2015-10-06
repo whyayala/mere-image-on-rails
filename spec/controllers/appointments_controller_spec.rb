@@ -38,11 +38,16 @@ describe AppointmentsController do
 			end
 		end
 		describe "GET #show" do
+			it "assigns the requested appointment to @appointment" do 
+				appointment = FactoryGirl.create(:appointment)
+				get "show", id: appointment
+				assigns(:appointment).should eq(appointment)
+			end
 			it "renders appointment show temaplate" do
-		        	get "show"
-				
+				get "show", id: FactoryGirl.create(:appointment)
 				expect(response.success?).to eq(true)	
 			end
+
 		end
 		describe "GET #new" do
 			it "redirects to customer show page" do
@@ -67,9 +72,14 @@ describe AppointmentsController do
 			end
 		end
 		describe "GET #show" do
+			it "assigns the requested appointment to @appointment" do 
+				appointment = FactoryGirl.create(:appointment)
+				get "show", id: appointment
+				assigns(:appointment).should eq(appointment)
+			end
 			it "renders appointment show temaplate" do
-				get "show"
-				expect(response.success?).to eq(true)
+				get "show", id: FactoryGirl.create(:appointment)
+				expect(response.success?).to eq(true)	
 			end
 		end
 		describe "GET #new" do
@@ -100,12 +110,13 @@ describe AppointmentsController do
 			end
 		end
 		describe "GET #show" do
-			it "assigns the requested appointment to @appointment" do
+			it "assigns the requested appointment to @appointment" do 
 				appointment = FactoryGirl.create(:appointment)
+				get "show", id: appointment
 				assigns(:appointment).should eq(appointment)
 			end
 			it "renders appointment show temaplate" do
-				get "show", id: appointment
+				get "show", id: FactoryGirl.create(:appointment)
 				expect(response.success?).to eq(true)	
 			end
 		end
