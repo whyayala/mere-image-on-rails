@@ -57,7 +57,8 @@ describe AppointmentsController do
 		end
 		describe "GET #edit" do
 			it "redirects to customer show page" do
-				get "edit"
+				appointment = FactoryGirl.create(:appointment)
+				get "edit", id: appointment
 				expect(response.redirect?).to eq(true)
 			end
 		end
@@ -90,7 +91,8 @@ describe AppointmentsController do
 		end
 		describe "GET #edit" do
 			it "renders appointment edit template" do
-				get "edit"
+				appointment = FactoryGirl.create(:appointment)
+				get "edit", id: appointment
 				expect(response.success?).to eq(true)
 			end
 		end
@@ -100,9 +102,9 @@ describe AppointmentsController do
 		login_manager
 		describe "GET #index" do
 			it "populates a collection of appointments" do
-				appointments = FactoryGirl.create(:appointment)
+				appointment = FactoryGirl.create(:appointment)
 				get "index"
-				assigns(:appointments).should eq([appointments])
+				assigns(:appointments).should eq([appointment])
 			end
 			it "renders appointment index template" do 
 				get "index"
@@ -128,7 +130,8 @@ describe AppointmentsController do
 		end
 		describe "GET #edit" do
 			it "renders appointment edit template" do
-				get "edit"
+				appointment = FactoryGirl.create(:appointment)
+				get "edit", id: appointment
 				expect(response.success?).to eq(true)	
 			end
 		end

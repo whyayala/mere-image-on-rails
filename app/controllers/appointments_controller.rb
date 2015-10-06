@@ -3,20 +3,28 @@ class AppointmentsController < ApplicationController
   before_filter :find_appointment, :only => [:edit, :update, :show, :destroy]
   
   def index
-    set_meta_tags title: 'Appointments Page',
+  	set_meta_tags title: 'Appointments Page',
                   description: 'Account managers can view and specialists can view all open and scheduled appointments here.',
                   noindex: true
-  	@appointments = Appointment.all
+	if current_user.is_customer?
+		redirect_to current_user
+	else
+  		@appointments = Appointment.all
+	end
   end
 
   def new
-  	@appointment = Appointment.new
+	if current_user.is_customer?
+		redirect_to current_user
+	else
+  		@appointment = Appointment.new
+	end
   end
 
   def create
   	@appointment = Appointment.new(appointment_params)
-    @appointment.user = current_user  	
-    if @appointment.save
+    	@appointment.user = current_user  	
+    	if @appointment.save
   		redirect_to @appointment
   	else
   		render 'new'
@@ -24,6 +32,9 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+	if current_user.is_customer?
+		redirect_to current_user 
+	end
   end
 
   def update
