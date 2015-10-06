@@ -52,5 +52,24 @@ describe UsersController do
 		end
 
 	end
+	
+	context "when a 'manager' is signed in" do
+		login_manager		
+		describe "GET #index" do
+			it "populates an array of contacts" do
+			end
+			it "renders index" do
+				get "index"
+				expect(response.success?).to eq(true)
+			end
+		end
+		describe "GET #show" do
+			it "renders show" do
+				get "show"
+				expect(response.success?).to eq(true)
+			end
+		end
+
+	end
 
 end

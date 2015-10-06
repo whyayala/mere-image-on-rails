@@ -2,94 +2,124 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe AppointmentsController do
-
-	describe "GET #index" do
-		it "populates a collection of all appointments" do 
-			appointment = FactoryGirl.create(:appointment)
-			get :index
-			assigns(:appointments).should eq([appointment])
-		end
-		it "renders the :index view" do
-			get :index
-			response.should render_template :index
-		end
-	end
-
-	describe "GET #show" do
-		it "assigns the requested appointment to @appointment" do
-			appointment = FactoryGirl.create(:appointment)
-			get :show, id: appointment
-			assigns(:appointment).should eq(appointment)
-		end
-		it "renders the :show view" do
-			get :show, id: FactoryGirl.create(:appointment)
-			response.should render_template :show
-		end
-	end
-
-	describe "GET #new" do
-		it "assigns a new appointment to @appointment"
-		it "renders the :new template"
-	end
-
-	describe "POST #create" do
-		context "with valid attributes" do
-			it "saves the new appointment in the database" do
-				expect {
-					post :create, appointment: FactoryGirl.attributes_for(:appointment)
-				}.to change(Appointment, :count).by(1)
-			end
-
-			it "redirects to show page" do
-				post :create, appointment: FactoryGirl.attributes_for(:appointment)
-				response.should redirect_to Appointment.last
+	context "When user is not logged in" do
+		describe "GET #index" do
+			it "redirects to sign_in" do 
+				get "index"
+				expect(response.redirect?).to eq(true) 		
 			end
 		end
-
-		context "with invalid attributes" do
-			it "does not save the appointment in the database" do
-				expect {
-					post :create, appointment: FactoryGirl.attributes_for(:invalid_appointment)
-				}.to_not change(Appointment, :count)
+		describe "GET #show" do
+			it "redirects to sign_in" do
+				get "show"
+				expect(response.redirect?).to eq(true) 		
 			end
-
-			it "re-renders the :new template" do
-				post :create, appointment: FactoryGirl.attributes_for(:invalid_appointment)
-				response.should render_template :new
+		end
+		describe "GET #new" do
+			it "redirects to sign_in" do
+				get "new"
+				expect(response.redirect?).to eq(true) 
+			end
+		end
+		describe "GET #edit" do
+			it "redirects to sign_in" do
+				get "edit"
+				expect(response.redirect?).to eq(true) 
 			end
 		end
 	end
-
-	describe "GET #edit" do
-		it "assigns a new appointment to @appointment"
-		it "renders the :new template"
+	
+	context "When customer is logged in" do
+		login_customer
+		describe "GET #index" do
+			it "redirects to customer show page" do 
+				get "index"
+				expect(response.redirect?).to eq(true) 
+			end
+		end
+		describe "GET #show" do
+			it "renders appointment show temaplate" do
+		        	get "show"
+				
+				expect(response.success?).to eq(true)	
+			end
+		end
+		describe "GET #new" do
+			it "redirects to customer show page" do
+				get "new"
+				expect(response.redirect?).to eq(true)
+			end
+		end
+		describe "GET #edit" do
+			it "redirects to customer show page" do
+				get "edit"
+				expect(response.redirect?).to eq(true)
+			end
+		end
+	
 	end
-
-	describe "POST #update" do
-		context "with valid attributes" do
-			it "saves the new appointment in the database"
-			it "redirects to show page"
+	context "When specialist is logged in" do
+		login_specialist
+		describe "GET #index" do
+			it "renders appointment index template" do 
+				get "index"
+				expect(response.success?).to eq(true)
+			end
 		end
-		context "with invalid attributes" do
-			it "does not save the appointment in the database"
-			it "re-renders the :new template"
+		describe "GET #show" do
+			it "renders appointment show temaplate" do
+				get "show"
+				expect(response.success?).to eq(true)
+			end
 		end
+		describe "GET #new" do
+			it "renders appointment new template" do
+				get "new"
+				expect(response.success?).to eq(true)
+			end
+		end
+		describe "GET #edit" do
+			it "renders appointment edit template" do
+				get "edit"
+				expect(response.success?).to eq(true)
+			end
+		end
+	
 	end
-
-	describe "DELETE #destroy" do
-		before :each do
-			@appointment = FactoryGirl.create(:appointment)
+	context "When manager is logged in" do
+		login_manager
+		describe "GET #index" do
+			it "populates a collection of appointments" do
+				appointments = FactoryGirl.create(:appointment)
+				get "index"
+				assigns(:appointments).should eq([appointments])
+			end
+			it "renders appointment index template" do 
+				get "index"
+				expect(response.success?).to eq(true)
+			end
 		end
-
-		it "deletes the contact" do
-			expect {
-				delete :destroy, id: @appointment
-			}.to change(Appointment, :count).by(-1)
+		describe "GET #show" do
+			it "assigns the requested appointment to @appointment" do
+				appointment = FactoryGirl.create(:appointment)
+				assigns(:appointment).should eq(appointment)
+			end
+			it "renders appointment show temaplate" do
+				get "show", id: appointment
+				expect(response.success?).to eq(true)	
+			end
 		end
-
-		it "redirects to root" do
-			delete :destroy, id: @appointment
-			response.should redirect_to root_url
+		describe "GET #new" do
+			it "renders appointment new template" do
+				get "new"
+				expect(response.success?).to eq(true)	
+			end
+		end
+		describe "GET #edit" do
+			it "renders appointment edit template" do
+				get "edit"
+				expect(response.success?).to eq(true)	
+			end
 		end
 	end
 end
