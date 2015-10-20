@@ -20,7 +20,7 @@
 
 $(function(){ $(document).foundation(); });
 
-$(document).ready(function(){
+$(document).on('page:load', function(){
   $('.slider').slick({
   	autoplay: true,
     autoplaySpeed: 2000,
