@@ -80,14 +80,18 @@
           <hr/>
           <div class="row">
             <div class="large-6 columns">
-              <p>© Copyright no one at all. Go to town.</p>
+              <p>© Mere Image Salon | Site Design: WhyAyala</p>
             </div>
             <div class="large-6 columns">
               <ul class="inline-list right">
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 4</a></li>
+                <li><%= link_to root_path do %>
+			<%= content_tag :i, "", :class => "fi-home" %>
+		    <% end %>
+                </li>
+                <li>
+		    <%= link_to welcome_contact_path do %>
+			<%= content_tag :i, "", :class => "fi-telephone" %>
+		    <% end %>
               </ul>
             </div>
           </div>
