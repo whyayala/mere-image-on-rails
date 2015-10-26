@@ -2,6 +2,7 @@ require 'faker'
 
 FactoryGirl.define do 
 	factory :appointment do |f|
+		f.association :user, factory: :customer, strategy: :create
 		f.appointment_time { Faker::Time.between(DateTime.now - 1, DateTime.now) }
 		f.appointment_type { Faker::Lorem.word }
 	end

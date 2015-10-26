@@ -11,8 +11,14 @@ describe Appointment do
 			:appointment, appointment_type: nil).should_not be_valid
 	end
 
+	describe 'find unassigned appointments for specialists' do
+                before :each do
+                        @haircut = FactoryGirl.create(:appointment) 
+                end
+        end
 
-	# it "has a unique appointment datetime" do
+
+ 	# it "has a unique appointment datetime" do
 	# 	appointment = FactoryGirl.create(:appointment)
 	# 	unique_datetime = appointment.appointment_time
 	# 	FactoryGirl.build(

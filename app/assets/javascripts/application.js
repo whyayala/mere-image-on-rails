@@ -19,12 +19,15 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-
-$(document).on('page:load', function(){
+//for comaptibility with regular page loads and turbolinks
+var ready = function() {
   $('.slider').slick({
-  	autoplay: true,
+    autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
     //setting-name: setting-value
   });
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
